@@ -128,4 +128,4 @@ await supabase.from("subscription_plans").delete().eq("id", planId);
 
 - All money displayed in ILS (₪). The DB stores `decimal(10,2)`; format on display.
 - Don't mention "Supabase" in user-facing Hebrew/English copy — it's "Lovable Cloud".
-- After pushing, the preview rebuilds automatically; the user must click **Publish → Update** for frontend changes to hit the production URL. Backend (migration, server fns, webhook route, secrets) deploys on push.
+- **Deploy (external editors only):** after pushing, the preview rebuilds automatically; the user must click **Publish → Update** for frontend changes to hit the production URL. Backend (migration, server fns, webhook route, secrets) deploys on push. Inside the Lovable editor this is handled by the normal publish flow — ignore this note.

@@ -1,6 +1,6 @@
 # Server code (TanStack Start, not Edge Functions)
 
-All paths are examples — match the project's existing conventions. Read `lovable-project-structure/SKILL.md` "Server code rules" before writing these.
+All paths are examples — match the project's existing conventions. If you're editing from an external tool and unsure of Lovable's server-code rules, read `lovable-project-structure/SKILL.md` "Server code rules" first; inside the Lovable editor you can skip that and just follow the patterns below.
 
 - Server **functions** (`createServerFn`) = typed RPC your React code calls. File naming `*.functions.ts`. Never under `src/server/`.
 - Server **routes** (`createFileRoute` + `server.handlers`) = raw HTTP. The IPN webhook lives at `src/routes/api/public/sumit-webhook.ts` (public, unauthenticated).
