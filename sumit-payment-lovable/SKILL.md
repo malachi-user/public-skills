@@ -1,19 +1,26 @@
 ---
 name: sumit-payment-lovable
-description: Use when adding Sumit (סומיט) credit-card billing / subscriptions to a Lovable project via Redirect Mode. Covers the subscription_plans + payment_records schema, RLS, the Sumit beginredirect payment flow, the success/IPN finalization logic (Code=000 is NOT always returned in Redirect Mode), and the admin plan manager. Translates the common "Supabase Edge Functions" Sumit recipe to Lovable's TanStack Start server functions/routes. Triggers on "sumit", "סומיט", "סליקה", "beginredirect", "subscription_plans", "payment_records", "Redirect Mode".
+description: Use when adding Sumit (סומיט) credit-card billing / subscriptions to a Lovable project via Redirect Mode — whether from Lovable's own editor/AI or from an external tool (Claude Code, local IDE, GitHub). Covers the subscription_plans + payment_records schema, RLS, the Sumit beginredirect payment flow, the success/IPN finalization logic (Code=000 is NOT always returned in Redirect Mode), and the admin plan manager. Maps the common "Supabase Edge Functions" Sumit recipe onto Lovable's TanStack Start server functions/routes. Triggers on "sumit", "סומיט", "סליקה", "beginredirect", "subscription_plans", "payment_records", "Redirect Mode".
 ---
 
 # Sumit payment / subscriptions on Lovable (Redirect Mode)
 
 Build a full subscription system on a Lovable project: admin-managed plans, a checkout that redirects to Sumit (סומיט), and automatic access grant after a successful payment.
 
-**Prerequisite skill:** This builds on `lovable-project-structure`. Read it first — it defines the file layout, the three Supabase clients, migrations, secrets, and the sync lifecycle this skill depends on. Everything here assumes the **modern Lovable template** (TanStack Start on Cloudflare Workers).
+This skill is **Sumit-specific** and stands on its own — the schema, the Sumit API calls, the Redirect Mode success logic, and the frontend flow are the substance. The only Lovable-specific decision is *where each piece of server code lives*; that's isolated to one table below so you can skip it if you already know the platform.
 
-## The #1 thing to get right: Lovable does NOT use Supabase Edge Functions
+## Pick your context first
 
-Most Sumit guides (including the spec this skill is built from) are written for **Supabase Edge Functions** (`supabase/functions/...`, Deno, `Deno.serve`). **Lovable's modern template does not use them** — all server logic runs as TanStack Start server functions/routes on Cloudflare Workers. If you scaffold `supabase/functions/`, it will silently do nothing.
+- **Working inside Lovable's own editor / AI** (you already know the platform): you don't need any Lovable background. Just follow the implementation order below and use the placement table as a quick reminder of which Lovable primitive each server piece maps to. Skip the `lovable-project-structure` prerequisite — that's for outside editors.
+- **Working from an external tool** (Claude Code, local IDE, GitHub PRs): read `lovable-project-structure` first — it defines the file layout, the three Supabase clients, migrations, secrets, and the sync lifecycle. Without it you'll likely break a Lovable invariant.
 
-Translate each "Edge Function action" to its Lovable equivalent:
+Either way, everything assumes the **modern Lovable template** (TanStack Start on Cloudflare Workers).
+
+## Server-code placement: do NOT use Supabase Edge Functions
+
+Most published Sumit guides (and the spec this skill is built from) target **Supabase Edge Functions** (`supabase/functions/...`, Deno, `Deno.serve`). **Lovable's modern template does not use them** — all server logic runs as TanStack Start server functions/routes on Cloudflare Workers. If you scaffold `supabase/functions/`, it will silently do nothing. (If you're in the Lovable editor you already know this; the table is just the mapping.)
+
+Map each "Edge Function action" to its Lovable primitive:
 
 | Sumit spec (Edge Function) | Lovable implementation | Why |
 |---|---|---|
