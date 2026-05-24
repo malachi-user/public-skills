@@ -1,6 +1,6 @@
 # Database schema & RLS
 
-Add **one new** timestamped migration under `supabase/migrations/<timestamp>_sumit_subscriptions.sql`. Never edit an already-applied migration (Lovable treats them as immutable history). After the user pushes, Lovable Cloud applies it and regenerates `src/integrations/supabase/types.ts`.
+Add **one new** timestamped migration under `supabase/migrations/<timestamp>_sumit_subscriptions.sql`. Never edit an already-applied migration (Lovable treats them as immutable history). Once applied (on push from an external editor, or via the normal flow inside the Lovable editor), Lovable Cloud runs it and regenerates `src/integrations/supabase/types.ts`.
 
 ## Migration
 
