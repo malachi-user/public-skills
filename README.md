@@ -30,7 +30,7 @@ Restart the relevant agent session after installation so it discovers the skill.
 
 ## Available skills
 
-- `build-premium-presentations` — premium presentations and interactive web decks; compatible with Claude Code and Codex.
+- `build-premium-presentations` — premium presentations and interactive web decks; compatible with Claude Code and Codex. Includes a deployable [Hebrew RTL example](build-premium-presentations/examples/hebrew-lead-workflow-demo/).
 - `accessibility-il-wcag` — accessibility auditing and implementation for Israeli Standard 5568 and WCAG AA.
 - `lovable-project-structure` — reusable architecture guidance for Lovable projects.
 - `sumit-payment-lovable` — SUMIT payment integration patterns for Lovable projects.

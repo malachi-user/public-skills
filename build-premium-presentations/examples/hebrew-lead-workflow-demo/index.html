@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl" data-theme="dark" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="סדנה מעשית לבעלי עסקים: הופכים פנייה מלקוח לתשובה ולמשימת המשך בעזרת AI.">
+  <title>מפנייה למעקב ב־4 דקות</title>
+  <link rel="stylesheet" href="vendor/rubik/700.css">
+  <link rel="stylesheet" href="vendor/rubik/900.css">
+  <link rel="stylesheet" href="vendor/assistant/400.css">
+  <link rel="stylesheet" href="vendor/assistant/700.css">
+  <link rel="stylesheet" href="vendor/reveal/reveal.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">דלג לתוכן המצגת</a>
+  <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+  <div class="paper-grain" aria-hidden="true"></div>
+  <div class="pointer-halo" aria-hidden="true"></div>
+
+  <button class="theme-toggle" type="button" data-no-advance aria-label="החלפה בין תצוגה כהה ובהירה" title="ערכת צבעים (T)">
+    <span aria-hidden="true">◐</span>
+  </button>
+  <output class="time-hint" aria-live="polite" aria-label="זמן מומלץ לשקופית"></output>
+  <div class="control-help" aria-hidden="true">F מסך מלא · B מסך שחור · T צבעים</div>
+
+  <main id="main-content" class="reveal" aria-label="מצגת סדנה" tabindex="-1">
+    <div class="slides">
+      <section id="opening" data-time-hint="1:20" data-effect="hero">
+        <div class="slide-shell hero-layout">
+          <div class="hero-copy">
+            <p class="eyebrow">סדנה מעשית · 12 דקות</p>
+            <h1>מפנייה למעקב<br><span>ב־4 דקות.</span></h1>
+            <p class="lede">תהליך AI אחד שמונע מלידים טובים להיעלם בין ההודעות.</p>
+            <p class="micro-promise">בסוף הסדנה יהיה לך נוסח שאפשר להעתיק ולעבוד איתו היום.</p>
+          </div>
+          <div class="inbox-stack" role="img" aria-label="המחשה: הודעה הופכת לתשובה ולמשימה">
+            <article class="message-card message-in">
+              <span class="message-label">הודעה חדשה</span>
+              <p>היי, ראיתי את האתר. כמה עולה לבנות אוטומציה לעסק קטן?</p>
+              <time>09:12</time>
+            </article>
+            <div class="route-line" aria-hidden="true"><i></i></div>
+            <article class="message-card message-out">
+              <span class="message-label">תשובה + מעקב</span>
+              <p>טיוטה אישית מוכנה · תזכורת לעוד יומיים</p>
+              <strong>✓</strong>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="leak" data-time-hint="1:40" data-effect="contrast">
+        <div class="slide-shell leak-layout">
+          <div>
+            <p class="eyebrow">הבעיה אינה מחסור בלידים</p>
+            <h2>הפנייה מגיעה.<br>ההמשך <span class="accent-mark">נמרח.</span></h2>
+          </div>
+          <div class="leak-visual" role="img" aria-label="שלוש נקודות שבהן פנייה עלולה להיתקע">
+            <div class="leak-step fragment fade-up"><b>01</b><span>קוראים תוך כדי עבודה</span></div>
+            <div class="leak-step fragment fade-up"><b>02</b><span>דוחים ניסוח תשובה</span></div>
+            <div class="leak-step fragment fade-up danger"><b>03</b><span>שוכחים לחזור</span></div>
+          </div>
+        </div>
+        <p class="bottom-line">AI לא מחליט במקומך. הוא מכין את הצעד הבא בזמן.</p>
+      </section>
+
+      <section id="workflow" data-time-hint="2:30" data-effect="flow">
+        <div class="slide-shell">
+          <p class="eyebrow">המתכון</p>
+          <h2>הודעה אחת. ארבע פעולות.</h2>
+          <ol class="workflow-rail" aria-label="תהליך העבודה">
+            <li class="workflow-step fragment fade-up">
+              <span class="step-number">1</span><i aria-hidden="true">↙</i>
+              <h3>מדביקים</h3><p>את הפנייה כמו שהיא</p>
+            </li>
+            <li class="workflow-step fragment fade-up">
+              <span class="step-number">2</span><i aria-hidden="true">≡</i>
+              <h3>מחלצים</h3><p>צורך, דחיפות וחסר</p>
+            </li>
+            <li class="workflow-step fragment fade-up">
+              <span class="step-number">3</span><i aria-hidden="true">✦</i>
+              <h3>מנסחים</h3><p>תשובה קצרה ואישית</p>
+            </li>
+            <li class="workflow-step fragment fade-up">
+              <span class="step-number">4</span><i aria-hidden="true">✓</i>
+              <h3>קובעים</h3><p>מועד מעקב ברור</p>
+            </li>
+          </ol>
+          <div class="human-gate fragment fade-up"><span>האדם מאשר</span><strong>לפני ששולחים</strong></div>
+        </div>
+      </section>
+
+      <section id="prompt" data-time-hint="3:00" data-effect="demo">
+        <div class="slide-shell prompt-layout">
+          <div class="prompt-copy">
+            <p class="eyebrow">העתק → הדבק → התאם</p>
+            <h2>זה הפרומפט.</h2>
+            <p class="lede">שלושה חלקים שומרים על התשובה שימושית ולא רובוטית.</p>
+            <div class="prompt-legend">
+              <span><i class="dot dot-context"></i>הקשר</span>
+              <span><i class="dot dot-job"></i>משימה</span>
+              <span><i class="dot dot-guard"></i>בקרה</span>
+            </div>
+          </div>
+          <article class="prompt-window" dir="rtl" aria-label="פרומפט מוכן להעתקה">
+            <div class="window-bar"><span></span><span></span><span></span><bdi>lead-workflow.txt</bdi></div>
+            <pre><code><mark class="context">אני בעל עסק ל[תחום]. הסגנון שלי: מקצועי, אנושי וקצר.</mark>
+
+<mark class="job">נתח את פניית הלקוח שאדביק:
+1. סכם את הצורך במשפט אחד.
+2. ציין איזה מידע חסר.
+3. נסח תשובת WhatsApp עד 70 מילים.
+4. הצע שאלת המשך אחת ומועד למעקב.</mark>
+
+<mark class="guard">אל תמציא מחיר או הבטחה.
+סמן [דורש אישור] ליד כל פרט שאינך בטוח בו.</mark></code></pre>
+            <button class="copy-button" type="button" data-copy-prompt data-no-advance>העתק פרומפט</button>
+          </article>
+        </div>
+      </section>
+
+      <section id="practice" data-time-hint="2:00" data-effect="practice">
+        <div class="slide-shell practice-layout">
+          <div class="practice-instruction">
+            <p class="eyebrow">עכשיו אתה</p>
+            <h2>בחר פנייה אחת<br>מהשבוע.</h2>
+            <ol>
+              <li class="fragment fade-up">הסר שם, טלפון ופרטים רגישים.</li>
+              <li class="fragment fade-up">הרץ את הפרומפט.</li>
+              <li class="fragment fade-up">תקן משפט אחד כדי שיישמע כמוך.</li>
+            </ol>
+          </div>
+          <div class="practice-timer" role="timer" aria-label="טיימר תרגול של שישים שניות">
+            <span>תרגול</span>
+            <strong data-countdown="60" aria-live="polite" aria-atomic="true">60</strong>
+            <small>שניות</small>
+            <button type="button" data-start-timer data-no-advance>התחל טיימר</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="closing" data-time-hint="1:30" data-effect="closing">
+        <div class="slide-shell closing-layout">
+          <p class="eyebrow">ההרגל של מחר בבוקר</p>
+          <h2>כל פנייה מסתיימת<br><span>בצעד הבא.</span></h2>
+          <div class="closing-rule" role="group" aria-label="כלל העבודה">
+            <span>פנייה</span><i aria-hidden="true">←</i>
+            <span>טיוטה</span><i aria-hidden="true">←</i>
+            <span>אישור</span><i aria-hidden="true">←</i>
+            <span class="closing-accent">מעקב</span>
+          </div>
+          <p class="closing-action">בחר היום שיחה אחת, והריץ עליה את התהליך לפני 16:00.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <nav class="legal-links" aria-label="מידע והגדרות">
+    <a href="accessibility.html">הצהרת נגישות</a>
+    <a href="privacy.html">פרטיות</a>
+    <button type="button" data-cookie-settings data-no-advance>הגדרות עוגיות</button>
+  </nav>
+
+  <button class="a11y-fab" type="button" data-a11y-open data-no-advance aria-label="פתיחת תפריט נגישות">נגישות</button>
+  <dialog class="a11y-dialog" data-a11y-dialog aria-labelledby="a11y-title">
+    <div class="a11y-head">
+      <h2 id="a11y-title">הגדרות נגישות</h2>
+      <button type="button" data-a11y-close aria-label="סגירת תפריט נגישות">×</button>
+    </div>
+    <div class="a11y-grid">
+      <button type="button" data-a11y-action="text">גודל טקסט</button>
+      <button type="button" data-a11y-action="contrast" aria-pressed="false">ניגודיות גבוהה</button>
+      <button type="button" data-a11y-action="links" aria-pressed="false">הדגשת קישורים</button>
+      <button type="button" data-a11y-action="font" aria-pressed="false">גופן קריא</button>
+      <button type="button" data-a11y-action="motion" aria-pressed="false">עצירת אנימציות</button>
+      <button type="button" data-a11y-action="grayscale" aria-pressed="false">גווני אפור</button>
+      <button type="button" data-a11y-action="spacing" aria-pressed="false">ריווח מוגדל</button>
+      <button type="button" data-a11y-action="light" aria-pressed="false">מצב בהיר</button>
+    </div>
+    <div class="a11y-meta">
+      <button type="button" data-a11y-reset>איפוס</button>
+      <button type="button" data-a11y-hide>הסתרת כפתור הנגישות</button>
+      <a href="accessibility.html">להצהרת הנגישות</a>
+    </div>
+  </dialog>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-title" aria-modal="false">
+    <h2 id="cookie-title">עוגיות באתר</h2>
+    <p>הדמו אינו משתמש כרגע בכלי ניתוח או שיווק. הבחירה נשמרת מקומית בדפדפן בלבד. <a href="privacy.html">לפרטים</a>.</p>
+    <div class="cookie-actions">
+      <button type="button" data-cookie-accept>אשר הכול</button>
+      <button type="button" data-cookie-reject>דחה לא־הכרחי</button>
+      <button type="button" data-cookie-custom aria-expanded="false">התאמה אישית</button>
+    </div>
+    <div class="cookie-panel" data-cookie-panel hidden>
+      <label><input type="checkbox" checked disabled> הכרחיות — פעילות תמיד</label>
+      <label><input type="checkbox" data-cookie-analytics> ניתוח — אין כרגע כלי ניתוח</label>
+      <label><input type="checkbox" data-cookie-marketing> שיווק — אין כרגע כלי שיווק</label>
+      <button type="button" data-cookie-save>שמור בחירה</button>
+    </div>
+  </div>
+
+  <script src="vendor/reveal/reveal.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>
