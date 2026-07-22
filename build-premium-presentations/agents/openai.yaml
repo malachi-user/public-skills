@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Premium Presentations"
+  short_description: "Create cinematic, polished web presentations"
+  default_prompt: "Use $build-premium-presentations to design and build a polished presentation for my audience."

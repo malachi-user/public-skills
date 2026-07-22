@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="{{LANG}}" dir="{{DIR}}" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="pointer-halo" aria-hidden="true"></div>
+  <button class="theme-toggle" type="button" data-no-advance aria-label="Toggle color theme">◐</button>
+  <output class="time-hint" aria-live="polite"></output>
+
+  <div class="reveal">
+    <div class="slides">
+      <section id="opening" data-time-hint="1:30">
+        <div class="slide-shell hero-layout">
+          <div>
+            <p class="eyebrow">A clear promise</p>
+            <h1>{{TITLE}}</h1>
+            <p class="lede">Replace this with one specific reason the audience should care.</p>
+            <button class="magnetic" type="button" data-magnetic data-no-advance>Primary action</button>
+          </div>
+          <div class="visual-orbit" aria-hidden="true"><span></span></div>
+        </div>
+      </section>
+
+      <section id="three-ideas" data-time-hint="4:00">
+        <div class="slide-shell">
+          <p class="eyebrow">The argument</p>
+          <h2>Three ideas, one remembered message</h2>
+          <div class="idea-grid">
+            <article class="fragment fade-up"><strong>01</strong><h3>First idea</h3><p>Evidence or example.</p></article>
+            <article class="fragment fade-up"><strong>02</strong><h3>Second idea</h3><p>Evidence or example.</p></article>
+            <article class="fragment fade-up"><strong>03</strong><h3>Third idea</h3><p>Evidence or example.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="closing" data-time-hint="1:00">
+        <div class="slide-shell closing-layout">
+          <p class="eyebrow">Close the loop</p>
+          <h2>What will you do next?</h2>
+          <p class="lede">End with a specific action, not “Thank you”.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>
