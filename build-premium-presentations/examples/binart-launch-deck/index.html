@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="he" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>עסק חכם — לעבוד פחות, להספיק יותר</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;800;900&family=Assistant:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="pointer-halo" aria-hidden="true"></div>
+
+  <button class="theme-toggle" type="button" data-no-advance aria-label="החלפת ערכת צבע">◐</button>
+  <output class="time-hint" aria-live="polite"></output>
+
+  <!-- Persistent character companion; reacts per slide via data-mascot. -->
+  <div class="mascot" id="mascot" aria-hidden="true" data-state="hidden">
+    <img src="assets/mascot.png" alt="" width="277" height="321" class="mascot__img">
+    <div class="mascot__bubble" id="mascot-bubble"></div>
+  </div>
+
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- 1 · Opening hook -->
+      <section id="opening" data-time-hint="0:45" data-effect="hero" data-mascot="wave" data-mascot-text="היי! אני העוזר הדיגיטלי שלכם 👋" data-transition="fade">
+        <div class="slide-shell hero-layout">
+          <div class="hero-copy">
+            <p class="eyebrow">עסק חכם · אוטומציה ו‑AI לעסקים</p>
+            <h1 class="hero-title">
+              <span class="ln">לעבוד פחות,</span>
+              <span class="ln accent">להספיק יותר.</span>
+            </h1>
+            <p class="lede">בניתי לעסקים צוות שקט של סוכני AI ואוטומציות שעושה את העבודה החוזרת — כדי שתחזרו לעסוק במה שבאמת חשוב.</p>
+            <button class="magnetic" type="button" data-magnetic data-no-advance>נתחיל את הסיור</button>
+          </div>
+          <div class="hero-void" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <!-- 2 · The problem -->
+      <section id="problem" data-time-hint="1:15" data-effect="statement" data-mascot="hide" data-transition="slide">
+        <div class="slide-shell statement-layout">
+          <p class="eyebrow">מה שגונב לכם את היום</p>
+          <h2 class="statement">
+            כל יום נשרפות שעות על
+            <span class="mark">עבודה ידנית חוזרת</span>
+            שאף אחד לא אמור לעשות ביד.
+          </h2>
+          <ul class="pain-list">
+            <li class="rise">מענה חוזר לאותן שאלות בוואטסאפ</li>
+            <li class="rise">העתקת פרטי לידים בין קבצים ומערכות</li>
+            <li class="rise">מעקב ידני אחרי הצעות מחיר וחשבוניות</li>
+            <li class="rise">סיכומי שיחות ופגישות שנשארים בראש בלבד</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 3 · The solution — system hub -->
+      <section id="solution" data-time-hint="1:30" data-effect="hub" data-mascot="hide" data-transition="slide">
+        <div class="slide-shell">
+          <p class="eyebrow">הפתרון</p>
+          <h2 class="tight">צוות סוכני AI, מחובר לאוטומציות שלכם</h2>
+          <div class="hub">
+            <div class="hub__core"><span>עסק חכם</span></div>
+            <div class="hub__node rise" data-i="1"><strong>מענה חכם</strong><em>וואטסאפ · מייל</em></div>
+            <div class="hub__node rise" data-i="2"><strong>קליטת לידים</strong><em>מכל מקור</em></div>
+            <div class="hub__node rise" data-i="3"><strong>מעקב ותזכורות</strong><em>אוטומטי</em></div>
+            <div class="hub__node rise" data-i="4"><strong>סיכומי פגישות</strong><em>תמלול ל‑AI</em></div>
+            <div class="hub__node rise" data-i="5"><strong>הצעות וחשבוניות</strong><em>בלחיצה</em></div>
+            <div class="hub__node rise" data-i="6"><strong>דוחות ותוכן</strong><em>שנכתבים לבד</em></div>
+            <svg class="hub__links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 · How it works — flow -->
+      <section id="how" data-time-hint="1:15" data-effect="flow" data-mascot="point" data-mascot-text="ככה זה עובד, שלב אחר שלב" data-transition="slide">
+        <div class="slide-shell">
+          <p class="eyebrow">איך זה עובד</p>
+          <h2 class="tight">ארבעה שלבים, ואתם משוחררים</h2>
+          <ol class="flow">
+            <li class="flow__step rise"><span class="flow__n">01</span><h3>מקשיבים לעסק</h3><p>ממפים יחד את העבודה החוזרת שאוכלת לכם את הזמן.</p></li>
+            <li class="flow__step rise"><span class="flow__n">02</span><h3>מחברים סוכן</h3><p>מגדירים סוכן AI לכל תהליך, מחובר לכלים שכבר יש לכם.</p></li>
+            <li class="flow__step rise"><span class="flow__n">03</span><h3>מריצים בשקט</h3><p>המערכת עובדת ברקע, מסלימה אליכם רק מה שדורש החלטה.</p></li>
+            <li class="flow__step rise"><span class="flow__n">04</span><h3>מודדים ומשפרים</h3><p>רואים כמה זמן חזר אליכם, ומרחיבים למה שעובד.</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 5 · Proof — metrics with running counters -->
+      <section id="proof" data-time-hint="1:00" data-effect="counters" data-mascot="hide" data-transition="convex">
+        <div class="slide-shell">
+          <p class="eyebrow">מה זה עושה בפועל</p>
+          <h2 class="tight">המספרים שחוזרים אליכם</h2>
+          <div class="metrics">
+            <article class="metric rise"><div class="metric__num"><span class="count" data-count="10">0</span><i>ש׳ בשבוע</i></div><p>זמן ידני שחוזר לעסק</p></article>
+            <article class="metric rise"><div class="metric__num"><span class="count" data-count="3">0</span><i>×</i></div><p>יותר פניות שנענות בזמן</p></article>
+            <article class="metric rise"><div class="metric__num"><span class="count" data-count="24">0</span><i>/7</i></div><p>מענה ראשוני, גם אחרי שעות</p></article>
+            <article class="metric rise"><div class="metric__num"><span class="count" data-count="0">0</span><i>לידים שנופלים</i></div><p>כל פנייה נרשמת ומקבלת מעקב</p></article>
+          </div>
+          <p class="foot-note rise">* הערכות המבוססות על הטמעות בפועל בעסקים דומים; התוצאה משתנה מעסק לעסק.</p>
+        </div>
+      </section>
+
+      <!-- 6 · Demo window — a WhatsApp auto-reply conversation -->
+      <section id="demo" data-time-hint="1:00" data-effect="chat" data-mascot="hide" data-transition="slide">
+        <div class="slide-shell demo-layout">
+          <div class="demo-copy">
+            <p class="eyebrow">דוגמה חיה</p>
+            <h2 class="tight">לקוח כותב. הסוכן כבר עונה.</h2>
+            <p class="lede">מענה ראשוני מדויק ומנומס תוך שניות, איסוף הפרטים, ופתיחת ליד במערכת — בלי שנגעתם בטלפון.</p>
+          </div>
+          <div class="phone" aria-label="הדגמת שיחת וואטסאפ אוטומטית">
+            <div class="phone__bar"><span class="phone__dot"></span> לקוח חדש</div>
+            <div class="phone__log" id="chatLog"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 · Identity — character beat -->
+      <section id="identity" data-time-hint="0:45" data-effect="identity" data-mascot="cheer" data-mascot-text="זה אני, תמיד בסביבה 🎉" data-transition="zoom">
+        <div class="slide-shell identity-layout">
+          <div class="identity-copy">
+            <p class="eyebrow">הפנים של המערכת</p>
+            <h2 class="tight">שקט, אמין, תמיד בסביבה.</h2>
+            <p class="lede">הסוכן שלנו לא מחפש תשומת לב — הוא עושה את העבודה השקטה ברקע, ומופיע רק כשצריך אתכם. בדיוק כמו עובד טוב.</p>
+          </div>
+          <div class="identity-stage" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <!-- 8 · Closing CTA -->
+      <section id="closing" data-time-hint="0:30" data-effect="closing" data-mascot="wave" data-mascot-text="דברו איתי, אני כאן" data-transition="fade">
+        <div class="slide-shell closing-layout">
+          <p class="eyebrow">מה עכשיו</p>
+          <h2 class="closing-title">מה תעשו עם הזמן<br>שתחזירו לעצמכם?</h2>
+          <p class="lede center">בואו נמצא את התהליך הראשון שכדאי להפוך לאוטומטי — שיחת היכרות קצרה, בלי התחייבות.</p>
+          <a class="magnetic" href="#" data-magnetic data-no-advance>דברו איתנו</a>
+          <p class="brand-sign">עסק חכם · לעבוד פחות, להספיק יותר</p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>
