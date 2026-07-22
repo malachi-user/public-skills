@@ -7,6 +7,12 @@ description: Design, build, redesign, or polish premium presentations and intera
 
 Create a presentation as one coherent system: message, visual direction, typography, composition, motion, interaction, speaker experience, and verification. Prefer a Reveal.js web deck when rich interaction, animation, responsive projection, or editable source is valuable. Preserve the requested format when editing PowerPoint, Keynote, Google Slides, Canva, or an existing deck.
 
+## Runtime portability
+
+Use this skill in both Claude Code and Codex. Resolve the skill directory from the loaded `SKILL.md`; never assume the current working directory is the skill directory. Run bundled scripts and read references/assets from that resolved directory.
+
+Use only tools that exist in the current environment. For character generation, use Codex `image_gen` when it is available. In Claude Code, use a configured Gemini image workflow or another user-approved image tool. If no image tool is available, continue with placeholders or ask for the missing asset instead of inventing a tool or API.
+
 ## Workflow
 
 1. Inspect all source material before designing. Preserve the original when adapting an existing deck.
@@ -17,17 +23,17 @@ Create a presentation as one coherent system: message, visual direction, typogra
 6. Scaffold a web deck when appropriate:
 
    ```bash
-   python3 scripts/scaffold_deck.py ./my-deck --title "Presentation title" --lang en --force
+   python3 "<skill-directory>/scripts/scaffold_deck.py" ./my-deck --title "Presentation title" --lang en --force
    ```
 
-   Omit `--force` unless overwriting an intentionally disposable target. The starter is in `assets/deck-starter/`.
+   Replace `<skill-directory>` with the directory containing this `SKILL.md`. Omit `--force` unless overwriting an intentionally disposable target. The starter is in `<skill-directory>/assets/deck-starter/`.
 7. Build the static composition first. Then add fragments, transitions, mouse response, counters, demos, or custom backgrounds only where they clarify sequence or create a deliberate peak. Read [references/motion-and-interaction.md](references/motion-and-interaction.md).
-8. Add a character only when it strengthens identity, explanation, or pacing. Use built-in `image_gen` by default when available; use Gemini only when explicitly requested or when the environment requires it. Read [references/character-animation.md](references/character-animation.md).
+8. Add a character only when it strengthens identity, explanation, or pacing. Follow the environment-specific tool selection above. Read [references/character-animation.md](references/character-animation.md).
 9. Add presenter notes, timing hints, keyboard/mouse controls, demo fallbacks, and a shortened route. Read [references/narrative-and-speaker.md](references/narrative-and-speaker.md).
 10. Run structural checks and browser QA:
 
    ```bash
-   python3 scripts/check_deck.py ./my-deck
+   python3 "<skill-directory>/scripts/check_deck.py" ./my-deck
    ```
 
    Then read and execute [references/quality-gates.md](references/quality-gates.md). Fix failures before delivery.
