@@ -224,12 +224,13 @@ html.a11y-emphasize-links a { text-decoration: underline !important; color: var(
 html.a11y-readable-font *, html.a11y-readable-font *::before, html.a11y-readable-font *::after { font-family: Arial, Helvetica, sans-serif !important; }
 html.a11y-no-motion *, html.a11y-no-motion *::before, html.a11y-no-motion *::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
 html.a11y-grayscale { filter: grayscale(100%); }
-html.a11y-spacing body { line-height:1.8; letter-spacing:.05em; word-spacing:.1em; }
+html.a11y-spacing *, html.a11y-spacing *::before, html.a11y-spacing *::after { line-height:1.8 !important; letter-spacing:.05em !important; word-spacing:.1em !important; }
 @keyframes route { from { transform: translateY(-100%); } to { transform: translateY(300%); } }
 @keyframes timer-pulse { 50% { box-shadow: 0 0 0 18px color-mix(in srgb, var(--accent) 5%, transparent), var(--shadow); } }
 
 @media (max-width: 800px) {
-  .legal-links, .control-help { display: none; }
+  .control-help { display: none; }
+  .legal-links { inset-inline-end: .5rem; inset-block-end: .45rem; max-inline-size: 260px; padding: .35rem .5rem; border-radius: 10px; background: var(--panel); font-size: .62rem; }
   .a11y-grid { grid-template-columns: 1fr; }
   .reveal .slides section { padding: 64px 24px 72px; }
   .slide-shell { width: 100%; }
@@ -256,7 +257,7 @@ html.a11y-spacing body { line-height:1.8; letter-spacing:.05em; word-spacing:.1e
   .prompt-copy h2 { margin-block-end: .2rem; }
   .prompt-copy .lede { font-size: .82rem; margin: 0; }
   .prompt-legend { font-size: .68rem; }
-  .prompt-window pre { padding: .85rem; font-size: .7rem; line-height: 1.35; }
+  .prompt-window pre { padding: .85rem; font-size: .78rem; line-height: 1.35; }
   .window-bar { padding: .55rem .75rem; }
   .copy-button { min-block-size: 56px; margin: 0 .85rem .8rem; font-size: .9rem; }
   .practice-instruction h2 { font-size: 2.45rem; }

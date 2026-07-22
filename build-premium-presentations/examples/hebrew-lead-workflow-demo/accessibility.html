@@ -11,6 +11,7 @@
   <main id="main-content" tabindex="-1">
     <h1>הצהרת נגישות</h1>
     <p>אנחנו פועלים כדי שהמצגת תהיה זמינה ונוחה לשימוש לכלל הציבור, לרבות אנשים עם מוגבלות.</p>
+    <p>ההתאמות בוצעו בהתייחס לתקן הישראלי ת״י 5568 ולהנחיות WCAG 2.1 ברמה AA. אין באמור הצהרת הסמכה, ואנחנו ממשיכים לבדוק ולשפר את הממשק.</p>
     <h2>התאמות שבוצעו</h2>
     <ul>
       <li>מבנה סמנטי, כיוון עברית ושמות נגישים לרכיבים.</li>
@@ -25,5 +26,27 @@
     <p>עדכון אחרון: 22 ביולי 2026.</p>
     <p><a href="index.html">חזרה למצגת</a></p>
   </main>
+  <nav class="legal-links" aria-label="מידע והגדרות">
+    <a href="accessibility.html" aria-current="page">הצהרת נגישות</a>
+    <a href="privacy.html">פרטיות</a>
+    <button type="button" data-cookie-settings>הגדרות עוגיות</button>
+  </nav>
+  <button class="a11y-fab" type="button" data-a11y-open aria-label="פתיחת תפריט נגישות">נגישות</button>
+  <dialog class="a11y-dialog" data-a11y-dialog aria-labelledby="a11y-title">
+    <div class="a11y-head"><h2 id="a11y-title">הגדרות נגישות</h2><button type="button" data-a11y-close aria-label="סגירת תפריט נגישות">×</button></div>
+    <div class="a11y-grid">
+      <button type="button" data-a11y-action="text">גודל טקסט</button><button type="button" data-a11y-action="contrast" aria-pressed="false">ניגודיות גבוהה</button>
+      <button type="button" data-a11y-action="links" aria-pressed="false">הדגשת קישורים</button><button type="button" data-a11y-action="font" aria-pressed="false">גופן קריא</button>
+      <button type="button" data-a11y-action="motion" aria-pressed="false">עצירת אנימציות</button><button type="button" data-a11y-action="grayscale" aria-pressed="false">גווני אפור</button>
+      <button type="button" data-a11y-action="spacing" aria-pressed="false">ריווח מוגדל</button><button type="button" data-a11y-action="light" aria-pressed="false">מצב בהיר</button>
+    </div>
+    <div class="a11y-meta"><button type="button" data-a11y-reset>איפוס</button><button type="button" data-a11y-hide>הסתרת כפתור הנגישות</button><a href="accessibility.html">להצהרת הנגישות</a></div>
+  </dialog>
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-title" aria-modal="false">
+    <h2 id="cookie-title">עוגיות באתר</h2><p>הדמו אינו משתמש כרגע בכלי ניתוח או שיווק. הבחירה נשמרת מקומית בדפדפן בלבד. <a href="privacy.html">לפרטים</a>.</p>
+    <div class="cookie-actions"><button type="button" data-cookie-accept>אשר הכול</button><button type="button" data-cookie-reject>דחה לא־הכרחי</button><button type="button" data-cookie-custom aria-expanded="false">התאמה אישית</button></div>
+    <div class="cookie-panel" data-cookie-panel hidden><label><input type="checkbox" checked disabled> הכרחיות — פעילות תמיד</label><label><input type="checkbox" data-cookie-analytics> ניתוח — אין כרגע כלי ניתוח</label><label><input type="checkbox" data-cookie-marketing> שיווק — אין כרגע כלי שיווק</label><button type="button" data-cookie-save>שמור בחירה</button></div>
+  </div>
+  <script src="scripts.js"></script>
 </body>
 </html>

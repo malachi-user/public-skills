@@ -165,6 +165,8 @@
       contrast: 'a11y-high-contrast', links: 'a11y-emphasize-links', font: 'a11y-readable-font',
       motion: 'a11y-no-motion', grayscale: 'a11y-grayscale', spacing: 'a11y-spacing'
     };
+    let baseTheme = 'dark';
+    try { baseTheme = localStorage.getItem('workshop-deck-theme') || 'dark'; } catch (_) { /* keep default */ }
     let prefs = { text: 100, contrast: false, links: false, font: false, motion: false, grayscale: false, spacing: false, light: false, hidden: false };
     try { prefs = { ...prefs, ...JSON.parse(localStorage.getItem('a11y-prefs') || '{}') }; } catch (_) { /* keep defaults */ }
 
@@ -172,7 +174,7 @@
       root.classList.remove('a11y-text-125', 'a11y-text-150', ...Object.values(preferenceClasses));
       if (prefs.text === 125 || prefs.text === 150) root.classList.add(`a11y-text-${prefs.text}`);
       Object.entries(preferenceClasses).forEach(([key, className]) => root.classList.toggle(className, Boolean(prefs[key])));
-      if (prefs.light) root.dataset.theme = 'light';
+      root.dataset.theme = prefs.light ? 'light' : baseTheme;
       fab.hidden = prefs.hidden && location.hash !== '#a11y';
       document.querySelectorAll('[data-a11y-action]').forEach(button => {
         const action = button.dataset.a11yAction;
@@ -187,6 +189,14 @@
     fab.addEventListener('click', event => { event.stopPropagation(); dialog.showModal(); });
     dialog.querySelector('[data-a11y-close]').addEventListener('click', () => dialog.close());
     dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+    dialog.addEventListener('close', () => fab.focus());
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && dialog.open) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        dialog.close();
+      }
+    }, true);
     dialog.querySelectorAll('[data-a11y-action]').forEach(button => button.addEventListener('click', () => {
       const action = button.dataset.a11yAction;
       if (action === 'text') prefs.text = prefs.text === 100 ? 125 : prefs.text === 125 ? 150 : 100;
@@ -207,10 +217,24 @@
     const panel = document.querySelector('[data-cookie-panel]');
     const analytics = document.querySelector('[data-cookie-analytics]');
     const marketing = document.querySelector('[data-cookie-marketing]');
+    const trackerRegistry = { analytics: [], marketing: [] };
+    function applyConsent(consent) {
+      Object.entries(trackerRegistry).forEach(([category, trackers]) => {
+        if (!consent[category]) return;
+        trackers.forEach(({ src, integrity }) => {
+          if (document.querySelector(`script[data-tracker-src="${src}"]`)) return;
+          const script = document.createElement('script');
+          script.src = src;
+          script.dataset.trackerSrc = src;
+          if (integrity) { script.integrity = integrity; script.crossOrigin = 'anonymous'; }
+          document.head.appendChild(script);
+        });
+      });
+    }
     function saveConsent(next) {
       try { localStorage.setItem('cookieConsent', JSON.stringify({ ...next, ts: new Date().toISOString() })); } catch (_) { /* private mode */ }
       banner.classList.remove('is-open');
-      // Tracker registry intentionally empty. Future trackers must be loaded here only after consent.
+      applyConsent(next);
     }
     function openConsent() { banner.classList.add('is-open'); }
     document.querySelector('[data-cookie-accept]').addEventListener('click', () => saveConsent({ analytics: true, marketing: true }));
@@ -221,6 +245,10 @@
     });
     document.querySelector('[data-cookie-save]').addEventListener('click', () => saveConsent({ analytics: analytics.checked, marketing: marketing.checked }));
     document.querySelector('[data-cookie-settings]').addEventListener('click', openConsent);
-    try { if (!localStorage.getItem('cookieConsent')) openConsent(); } catch (_) { openConsent(); }
+    try {
+      const saved = localStorage.getItem('cookieConsent');
+      if (saved) applyConsent(JSON.parse(saved));
+      else openConsent();
+    } catch (_) { openConsent(); }
   }
 })();
