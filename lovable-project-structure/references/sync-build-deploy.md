@@ -14,7 +14,7 @@ Safe workflow:
 1. `git pull` before editing — the user may have made changes in the Lovable editor since you last looked.
 2. Edit, commit, push to the default branch (or open a PR and merge).
 3. Wait ~5–15s; the Lovable preview at `id-preview--<project-id>.lovable.app` rebuilds with your commit.
-4. If the user wants the change live on production (`<project>.lovable.app` or their custom domain), **they must click "Publish → Update"** in the editor. Pushing to GitHub alone does **not** publish frontend changes.
+4. To get the change live on production (`<project>.lovable.app` or their custom domain), publish it. Pushing to GitHub alone does **not** publish frontend changes. Two ways: `deploy_project(project_id)` over the [Lovable MCP](mcp-workflow.md), or the user clicks **Publish → Update** in the editor.
 
 Avoid:
 
@@ -28,13 +28,13 @@ Avoid:
 
 | Change type | Lands on preview URL | Lands on production URL |
 |---|---|---|
-| Frontend (React, CSS, routes) | On push (auto) | **Only after user clicks Publish → Update** |
+| Frontend (React, CSS, routes) | On push (auto) | **Only after a publish** — `deploy_project` over MCP, or Publish → Update in the editor |
 | New migration | On push (auto, applied to Cloud DB) | On push (auto — DB is shared) |
 | New/changed server function or server route | On push (auto) | On push (auto) |
 | Secret added in Lovable UI | Immediately | Immediately |
 | Connector linked | Immediately | Immediately |
 
-Backend changes deploy without a publish click because the DB and server runtime are shared between preview and production. Only the static/SSR build is gated by the publish action.
+Backend changes deploy without a publish because the DB and server runtime are shared between preview and production. Only the static/SSR build is gated by the publish action.
 
 ## URLs to know
 

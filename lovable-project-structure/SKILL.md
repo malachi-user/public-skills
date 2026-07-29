@@ -1,17 +1,32 @@
 ---
 name: lovable-project-structure
-description: Use when editing a Lovable-generated project from outside the Lovable editor (Claude Code, local IDE, GitHub PRs). Explains the TanStack Start layout, Lovable Cloud backend (Supabase under the hood), secrets, migrations, AI gateway, connectors, and the GitHub sync / build / deploy lifecycle so external edits don't break Lovable's invariants. Triggers on "lovable project", "lovable cloud", "lovable.app", `src/routes/`, `supabase/migrations/`, `src/integrations/supabase/`.
+description: Use when working on a Lovable project from outside the Lovable editor — via the Lovable MCP, GitHub, or a local IDE. Covers the MCP toolchain (read code, query the database, deploy to production), the TanStack Start layout, Lovable Cloud backend (Supabase under the hood), secrets, migrations, AI gateway, connectors, and the GitHub sync / build / deploy lifecycle so external edits don't break Lovable's invariants. Triggers on "lovable project", "lovable cloud", "lovable.app", "lovable mcp", "deploy lovable", `src/routes/`, `supabase/migrations/`, `src/integrations/supabase/`.
 ---
 
 # Lovable Project Structure (for external editors)
 
-This skill is for agents editing a Lovable-built repo from **outside** the Lovable web editor — typically via GitHub, locally, or through tools like Claude Code. Lovable enforces conventions that aren't obvious from the file tree; violating them breaks the preview, the build, or the auto-sync.
+This skill is for agents working on a Lovable-built project from **outside** the Lovable web editor — through the Lovable MCP, through GitHub, or locally in an IDE. Lovable enforces conventions that aren't obvious from the file tree; violating them breaks the preview, the build, or the auto-sync.
 
 ## When to use
 
 - Repo contains `.lovable/`, `src/routeTree.gen.ts`, `src/integrations/supabase/`, or `wrangler.jsonc` with TanStack Start.
-- User asks to fix, refactor, or add features to a Lovable project from an external tool.
+- User asks to fix, refactor, add features to, deploy, or inspect the database of a Lovable project from an external tool.
 - You see `id-preview--*.lovable.app` or `project--*.lovable.app` URLs.
+- Any `mcp__*_Lovable__*` tool is available.
+
+## Start here: is the MCP connected?
+
+Run `claude mcp list`. If a Lovable server reports `✔ Connected`, you have far more reach than "edit files and hope" — you can read the project's code, run SQL against its live database, and **publish to production yourself**. Full details in [MCP workflow](references/mcp-workflow.md); the short version:
+
+| Question | Answer |
+|---|---|
+| Can I edit on GitHub and then deploy from here? | **Yes.** Push to the default branch → Lovable auto-syncs in seconds → `deploy_project(project_id)` publishes it. No manual "Publish" click needed anymore. |
+| Can I read the database? | **Yes.** `get_database_status` then `query_database` with a `SELECT`. |
+| Can I write to the database? | **Yes** — `query_database` takes INSERT/UPDATE/DELETE/DDL. But it hits **production** data with no undo, and schema changes still belong in a migration file. |
+| Can I read project files without cloning? | **Yes.** `list_files`, `read_file`, `get_diff`, `list_edits`. |
+| Can I set secrets, add connectors, or configure a domain? | **No.** Those are Lovable UI only — tell the user. |
+
+If the MCP is not connected, everything below still applies via plain Git.
 
 ## Stack at a glance
 
@@ -56,5 +71,5 @@ Load these on demand, not preemptively:
 2. **Never store roles on `profiles`/`users`** — Lovable's security model requires a separate `user_roles` table + `has_role()` security-definer function. Skipping this opens privilege-escalation. See storage reference.
 3. **No Supabase mention to end-users in UI copy** — Lovable brands the backend as "Lovable Cloud". Keep the abstraction in user-facing text; internal code/comments referencing Supabase are fine.
 4. **Pushing to GitHub auto-syncs to Lovable** within seconds; pulling Lovable's commits is automatic too. Avoid force-push and rebases on the default branch — they can desync the editor's view.
-5. **Frontend changes need a "Publish/Update" click** in Lovable to go to the production `.lovable.app` URL. Backend changes (migrations, server functions, secrets) deploy on push. The preview URL (`id-preview--*`) always reflects the latest commit.
+5. **Frontend changes need an explicit publish** to reach the production `.lovable.app` URL — `deploy_project(project_id)` if the MCP is connected, otherwise the user clicks Publish → Update. Backend changes (migrations, server functions, secrets) deploy on push. The preview URL (`id-preview--*`) always reflects the latest commit.
 6. **Cloudflare Worker constraints**: avoid Node-only packages. If a dep needs `child_process`, native addons, or a real filesystem, it will pass dev and fail in production. Prefer fetch-based clients and WASM builds.
